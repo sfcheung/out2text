@@ -6,7 +6,7 @@ Authors@R:
            family = "Cheung",
            role = c("aut", "cre"),
            email = "shufai.cheung@gmail.com",
-           comment = c(ORCID = "0000-0002-9871-9448"))
+           comment = c(ORCID = "0000-0002-9871-9448")))
 Description: Extract values such as regression coefficients, p-values,
              confidence intervals, from common procedures such as regression
              and format them as strings so that they can be embedded in
@@ -18,3 +18,4 @@ RoxygenNote: 7.2.1
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+URL: https://sfcheung.github.io/out2text/
