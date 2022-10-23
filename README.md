@@ -1,3 +1,5 @@
+(Work-in-progress. Not ready for use)
+
 # out2text
 
 This package contain functions to extract values such as
