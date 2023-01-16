@@ -16,6 +16,10 @@ passed to \code{\link[=formatC]{formatC()}}.}
 
 \item{format}{The format string used in \code{\link[=formatC]{formatC()}}. Default
 is \code{"f"}.}
+
+\item{type}{The type of R-squared to be extracted.
+Either \code{"unadjusted"}, the default, or \code{"adjusted"},
+which returns the adjusted R-squared.}
 }
 \value{
 A one-element character vector.
