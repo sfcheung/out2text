@@ -45,10 +45,10 @@ text_confint <- function(x, ...) UseMethod("text_confint")
 text_confint.default <- function(x,
                           param = NULL,
                           level = .95,
-                          digits = 3,
-                          format = "f",
-                          sep = ", ",
-                          brackets = c("[", "]"),
+                          digits = getOption("out2text_coef_digits", 3),
+                          format = getOption("out2text_coef_format", "f"),
+                          sep = getOption("out2text_confint_sep", ", "),
+                          brackets = getOption("out2text_confint_brackets", c("[", "]")),
                           ...) {
     if (is.null(param) || length(param) != 1 ||
         !is.character(param)) {
@@ -86,10 +86,10 @@ text_confint.default <- function(x,
 text_confint.lm <- function(x,
                           param = NULL,
                           level = .95,
-                          digits = 3,
-                          format = "f",
-                          sep = ", ",
-                          brackets = c("[", "]"),
+                          digits = getOption("out2text_coef_digits", 3),
+                          format = getOption("out2text_coef_format", "f"),
+                          sep = getOption("out2text_confint_sep", ", "),
+                          brackets = getOption("out2text_confint_brackets", c("[", "]")),
                           ...) {
     NextMethod()
   }
@@ -97,28 +97,28 @@ text_confint.lm <- function(x,
 #' @export
 
 text_confint.glm <- function(x,
-                          param = NULL,
-                          level = .95,
-                          digits = 3,
-                          format = "f",
-                          sep = ", ",
-                          brackets = c("[", "]"),
-                          ...) {
+                      param = NULL,
+                      level = .95,
+                      digits = getOption("out2text_coef_digits", 3),
+                      format = getOption("out2text_coef_format", "f"),
+                      sep = getOption("out2text_confint_sep", ", "),
+                      brackets = getOption("out2text_confint_brackets", c("[", "]")),
+                      ...) {
     NextMethod()
   }
 
 #' @export
 
 text_confint.lavaan <- function(x,
-                                param = NULL,
-                                level = .95,
-                                digits = 3,
-                                format = "f",
-                                sep = ", ",
-                                brackets = c("[", "]"),
-                                standardized = FALSE,
-                                group = 1L,
-                                ...) {
+                        param = NULL,
+                        level = .95,
+                        digits = getOption("out2text_coef_digits", 3),
+                        format = getOption("out2text_coef_format", "f"),
+                        sep = getOption("out2text_confint_sep", ", "),
+                        brackets = getOption("out2text_confint_brackets", c("[", "]")),
+                        standardized = FALSE,
+                        group = 1L,
+                        ...) {
     param_str <- lavaan::lavParseModelString(
                     model.syntax = param,
                     as.data.frame. = TRUE,
@@ -134,7 +134,7 @@ text_confint.lavaan <- function(x,
       } else {
         ct <- lavaan::parameterEstimates(x, ...)
       }
-    if (lavInspect(x, "ngroups") == 1) {
+    if (lavaan::lavInspect(x, "ngroups") == 1) {
         ct$group <- 1
       }
     out0 <- ct[(ct$lhs == param_str$lhs) &

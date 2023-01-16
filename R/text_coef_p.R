@@ -44,8 +44,8 @@ text_coef_p <- function(x, ...) UseMethod("text_coef_p")
 
 text_coef_p.default <- function(x,
                                 param = NULL,
-                                digits = 3,
-                                format = "f",
+                                digits = getOption("out2text_coef_p_digits", 3),
+                                format = getOption("out2text_coef_p_format", "f"),
                                 ...) {
     NULL
   }
@@ -55,8 +55,8 @@ text_coef_p.default <- function(x,
 
 text_coef_p.lm <- function(x,
                            param = NULL,
-                           digits = 3,
-                           format = "f",
+                           digits = getOption("out2text_coef_p_digits", 3),
+                           format = getOption("out2text_coef_p_format", "f"),
                           ...) {
     if (is.null(param) || length(param) != 1 ||
         !is.character(param)) {
@@ -73,8 +73,8 @@ text_coef_p.lm <- function(x,
 
 text_coef_p.glm <- function(x,
                             param = NULL,
-                            digits = 3,
-                            format = "f",
+                            digits = getOption("out2text_coef_p_digits", 3),
+                            format = getOption("out2text_coef_p_format", "f"),
                             ...) {
     NextMethod()
   }
@@ -83,8 +83,8 @@ text_coef_p.glm <- function(x,
 
 text_coef_p.lavaan <- function(x,
                                param = NULL,
-                               digits = 3,
-                               format = "f",
+                               digits = getOption("out2text_coef_p_digits", 3),
+                               format = getOption("out2text_coef_p_format", "f"),
                                standardized = FALSE,
                                group = 1L,
                                ...) {
