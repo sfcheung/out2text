@@ -7,17 +7,21 @@
 text_coef_p(x, ...)
 }
 \arguments{
-\item{x}{A supported object with coefficients in the results.}
+\item{x}{A supported object with coefficients in the
+results.}
 
 \item{...}{Optional arguments. Ignored for now.}
 
-\item{param}{The name of the term or parameter for which
+\item{param}{The name of the term or parameter for
+which
 the coefficients will be returned.}
 
-\item{digits}{The number of decimal places to keep. To be
+\item{digits}{The number of decimal places to keep.
+To be
 passed to \code{\link[=formatC]{formatC()}}.}
 
-\item{format}{The format string used in \code{\link[=formatC]{formatC()}}. Default
+\item{format}{The format string used in \code{\link[=formatC]{formatC()}}.
+Default
 is \code{"f"}.}
 }
 \value{

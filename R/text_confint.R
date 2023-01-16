@@ -106,3 +106,47 @@ text_confint.glm <- function(x,
                           ...) {
     NextMethod()
   }
+
+#' @export
+
+text_confint.lavaan <- function(x,
+                                param = NULL,
+                                level = .95,
+                                digits = 3,
+                                format = "f",
+                                sep = ", ",
+                                brackets = c("[", "]"),
+                                standardized = FALSE,
+                                group = 1L,
+                                ...) {
+    param_str <- lavaan::lavParseModelString(
+                    model.syntax = param,
+                    as.data.frame. = TRUE,
+                    warn = FALSE)
+    if (standardized) {
+        ct <- lavaan::standardizedSolution(x,
+                                           se = TRUE,
+                                           zstat = FALSE,
+                                           pvalue = FALSE,
+                                           ci = TRUE,
+                                           ...)
+        ct$est <- ct$est.std
+      } else {
+        ct <- lavaan::parameterEstimates(x, ...)
+      }
+    if (lavInspect(x, "ngroups") == 1) {
+        ct$group <- 1
+      }
+    out0 <- ct[(ct$lhs == param_str$lhs) &
+                (ct$op == param_str$op) &
+                (ct$rhs == param_str$rhs) &
+                (ct$group == group), c("ci.lower", "ci.upper")]
+    out0 <- unname(unlist(out0))
+    out1 <- formatC(out0,
+                    digits = digits,
+                    format = format)
+    out <- paste0(brackets[1],
+                  paste0(out1, collapse = sep),
+                  brackets[2])
+    out
+  }
