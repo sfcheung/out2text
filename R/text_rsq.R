@@ -17,6 +17,11 @@
 #' @param format The format string used in [formatC()]. Default
 #' is `"f"`.
 #'
+#' @param type The type of R-squared to be extracted.
+#' Either `"unadjusted"`, the default, or `"adjusted"`,
+#' which returns the adjusted R-squared.
+#'
+#'
 #' @param ...  Optional arguments. Ignored for now.
 #'
 #'
@@ -36,25 +41,23 @@
 
 text_rsq <- function(x, ...) UseMethod("text_rsq")
 
-#' @param type The type of R-squared to be extracted.
-#' Either `"unadjusted"`, the default, or `"adjusted"`,
-#' which returns the adjusted R-squared.
-#'
 #' @export
+#' @rdname text_rsq
 
 text_rsq.default <- function(x,
-                             digits = 3,
-                             format = "f",
+                             digits = getOption("out2text_coef_digits", 3),
+                             format = getOption("out2text_coef_format", "f"),
                              ...) {
     NULL
   }
 
 
 #' @export
+#' @rdname text_rsq
 
 text_rsq.lm <- function(x,
-                        digits = 3,
-                        format = "f",
+                        digits = getOption("out2text_coef_digits", 3),
+                        format = getOption("out2text_coef_format", "f"),
                         type = c("unadjusted", "adjusted"),
                         ...) {
     type <- match.arg(type)
