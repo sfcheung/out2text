@@ -4,9 +4,6 @@
     <loc>https://sfcheung.github.io/out2text/404.html</loc>
   </url>
   <url>
-    <loc>https://sfcheung.github.io/out2text/LICENSE-text.html</loc>
-  </url>
-  <url>
     <loc>https://sfcheung.github.io/out2text/LICENSE.html</loc>
   </url>
   <url>
@@ -23,6 +20,12 @@
   </url>
   <url>
     <loc>https://sfcheung.github.io/out2text/reference/text_coef.html</loc>
+  </url>
+  <url>
+    <loc>https://sfcheung.github.io/out2text/reference/text_coef_p.html</loc>
+  </url>
+  <url>
+    <loc>https://sfcheung.github.io/out2text/reference/text_confint.html</loc>
   </url>
   <url>
     <loc>https://sfcheung.github.io/out2text/reference/text_rsq.html</loc>
