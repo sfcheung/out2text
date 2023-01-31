@@ -2,9 +2,47 @@
 % Please edit documentation in R/text_coef_p.R
 \name{text_coef_p}
 \alias{text_coef_p}
+\alias{text_coef_p.default}
+\alias{text_coef_p.lm}
+\alias{text_coef_p.glm}
+\alias{text_coef_p.lavaan}
 \title{The P-Value of a Coefficient as Text}
 \usage{
 text_coef_p(x, ...)
+
+\method{text_coef_p}{default}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_p_digits", 3),
+  format = getOption("out2text_coef_p_format", "f"),
+  ...
+)
+
+\method{text_coef_p}{lm}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_p_digits", 3),
+  format = getOption("out2text_coef_p_format", "f"),
+  ...
+)
+
+\method{text_coef_p}{glm}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_p_digits", 3),
+  format = getOption("out2text_coef_p_format", "f"),
+  ...
+)
+
+\method{text_coef_p}{lavaan}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_p_digits", 3),
+  format = getOption("out2text_coef_p_format", "f"),
+  standardized = FALSE,
+  group = 1L,
+  ...
+)
 }
 \arguments{
 \item{x}{A supported object with coefficients in the
@@ -23,6 +61,12 @@ passed to \code{\link[=formatC]{formatC()}}.}
 \item{format}{The format string used in \code{\link[=formatC]{formatC()}}.
 Default
 is \code{"f"}.}
+
+\item{standardized}{Logical. Whether the estimate in the standardized
+solution is to be returned. Default is \code{FALSE}.}
+
+\item{group}{For an \code{lavaan}-class object, the group from which the
+estimate is to be returned. Default is 1.}
 }
 \value{
 A one-element character vector.
@@ -44,7 +88,7 @@ n <- 10
 x <- rnorm(n)
 y <- .6 * x + rnorm(n, 0, .8)
 out <- lm(y ~ x)
-text_coef_p_p(out, "x")
+text_coef_p(out, "x")
 
 }
 \author{

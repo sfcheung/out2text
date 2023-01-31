@@ -10,16 +10,6 @@
 #' @return A one-element character vector of the interval.
 #'
 #' @param x A supported object with coefficients in the results.
-#' @param param The name of the term or parameter for which
-#' the coefficients will be returned.
-#' @param level The level of confidence. Default is .95.
-#' @param digits The number of decimal places to keep. To be
-#' passed to [formatC()].
-#' @param format The format string used in [formatC()]. Default
-#' is `"f"`.
-#' @param sep The separator. Default is `", "`.
-#' @param brackets The brackets. A character vector with
-#' two elements. Default is `c("[", "]")`.
 #' @param ...  Optional arguments. To be passed to
 #' [stats::confint()].
 #'
@@ -40,7 +30,18 @@
 
 text_confint <- function(x, ...) UseMethod("text_confint")
 
+#' @param param The name of the term or parameter for which
+#' the coefficients will be returned.
+#' @param level The level of confidence. Default is .95.
+#' @param digits The number of decimal places to keep. To be
+#' passed to [formatC()].
+#' @param format The format string used in [formatC()]. Default
+#' is `"f"`.
+#' @param sep The separator. Default is `", "`.
+#' @param brackets The brackets. A character vector with
+#' two elements. Default is `c("[", "]")`.
 #' @export
+#' @rdname text_confint
 
 text_confint.default <- function(x,
                           param = NULL,
@@ -82,6 +83,7 @@ text_confint.default <- function(x,
 
 
 #' @export
+#' @rdname text_confint
 
 text_confint.lm <- function(x,
                           param = NULL,
@@ -107,7 +109,12 @@ text_confint.glm <- function(x,
     NextMethod()
   }
 
+#' @param standardized Logical. Whether the estimate in the standardized
+#' solution is to be returned. Default is `FALSE`.
+#' @param group For an `lavaan`-class object, the group from which the
+#' estimate is to be returned. Default is 1.
 #' @export
+#' @rdname text_confint
 
 text_confint.lavaan <- function(x,
                         param = NULL,

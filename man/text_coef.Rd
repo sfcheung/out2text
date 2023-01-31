@@ -2,9 +2,47 @@
 % Please edit documentation in R/text_coef.R
 \name{text_coef}
 \alias{text_coef}
+\alias{text_coef.default}
+\alias{text_coef.lm}
+\alias{text_coef.glm}
+\alias{text_coef.lavaan}
 \title{A Coefficient as Text}
 \usage{
 text_coef(x, ...)
+
+\method{text_coef}{default}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  ...
+)
+
+\method{text_coef}{lm}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  ...
+)
+
+\method{text_coef}{glm}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  ...
+)
+
+\method{text_coef}{lavaan}(
+  x,
+  param = NULL,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  standardized = FALSE,
+  group = 1L,
+  ...
+)
 }
 \arguments{
 \item{x}{A supported object with coefficients in the results.}
@@ -19,6 +57,12 @@ passed to \code{\link[=formatC]{formatC()}}.}
 
 \item{format}{The format string used in \code{\link[=formatC]{formatC()}}. Default
 is \code{"f"}.}
+
+\item{standardized}{Logical. Whether the estimate in the standardized
+solution is to be returned. Default is \code{FALSE}.}
+
+\item{group}{For an \code{lavaan}-class object, the group from which the
+estimate is to be returned. Default is 1.}
 }
 \value{
 A one-element character vector.

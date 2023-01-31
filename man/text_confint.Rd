@@ -2,9 +2,47 @@
 % Please edit documentation in R/text_confint.R
 \name{text_confint}
 \alias{text_confint}
+\alias{text_confint.default}
+\alias{text_confint.lm}
+\alias{text_confint.lavaan}
 \title{A Confidence Interval as Text}
 \usage{
 text_confint(x, ...)
+
+\method{text_confint}{default}(
+  x,
+  param = NULL,
+  level = 0.95,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  sep = getOption("out2text_confint_sep", ", "),
+  brackets = getOption("out2text_confint_brackets", c("[", "]")),
+  ...
+)
+
+\method{text_confint}{lm}(
+  x,
+  param = NULL,
+  level = 0.95,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  sep = getOption("out2text_confint_sep", ", "),
+  brackets = getOption("out2text_confint_brackets", c("[", "]")),
+  ...
+)
+
+\method{text_confint}{lavaan}(
+  x,
+  param = NULL,
+  level = 0.95,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  sep = getOption("out2text_confint_sep", ", "),
+  brackets = getOption("out2text_confint_brackets", c("[", "]")),
+  standardized = FALSE,
+  group = 1L,
+  ...
+)
 }
 \arguments{
 \item{x}{A supported object with coefficients in the results.}
@@ -27,6 +65,12 @@ is \code{"f"}.}
 
 \item{brackets}{The brackets. A character vector with
 two elements. Default is \code{c("[", "]")}.}
+
+\item{standardized}{Logical. Whether the estimate in the standardized
+solution is to be returned. Default is \code{FALSE}.}
+
+\item{group}{For an \code{lavaan}-class object, the group from which the
+estimate is to be returned. Default is 1.}
 }
 \value{
 A one-element character vector of the interval.

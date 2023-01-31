@@ -42,6 +42,7 @@
 text_rsq <- function(x, ...) UseMethod("text_rsq")
 
 #' @export
+#' @rdname text_rsq
 
 text_rsq.default <- function(x,
                              digits = getOption("out2text_coef_digits", 3),
@@ -52,6 +53,7 @@ text_rsq.default <- function(x,
 
 
 #' @export
+#' @rdname text_rsq
 
 text_rsq.lm <- function(x,
                         digits = getOption("out2text_coef_digits", 3),

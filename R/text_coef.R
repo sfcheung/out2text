@@ -10,12 +10,6 @@
 #' @return A one-element character vector.
 #'
 #' @param x A supported object with coefficients in the results.
-#' @param param The name of the term or parameter for which
-#' the coefficients will be returned.
-#' @param digits The number of decimal places to keep. To be
-#' passed to [formatC()].
-#' @param format The format string used in [formatC()]. Default
-#' is `"f"`.
 #' @param ...  Optional arguments. Ignored for now.
 #'
 #'
@@ -35,7 +29,14 @@
 
 text_coef <- function(x, ...) UseMethod("text_coef")
 
+#' @param param The name of the term or parameter for which
+#' the coefficients will be returned.
+#' @param digits The number of decimal places to keep. To be
+#' passed to [formatC()].
+#' @param format The format string used in [formatC()]. Default
+#' is `"f"`.
 #' @export
+#' @rdname text_coef
 
 text_coef.default <- function(x,
                           param = NULL,
@@ -62,6 +63,7 @@ text_coef.default <- function(x,
 
 
 #' @export
+#' @rdname text_coef
 
 text_coef.lm <- function(x,
                           param = NULL,
@@ -72,6 +74,7 @@ text_coef.lm <- function(x,
   }
 
 #' @export
+#' @rdname text_coef
 
 text_coef.glm <- function(x,
                           param = NULL,
@@ -81,7 +84,13 @@ text_coef.glm <- function(x,
     NextMethod()
   }
 
+#' @param standardized Logical. Whether the estimate in the standardized
+#' solution is to be returned. Default is `FALSE`.
+#' @param group For an `lavaan`-class object, the group from which the
+#' estimate is to be returned. Default is 1.
+#'
 #' @export
+#' @rdname text_coef
 
 text_coef.lavaan <- function(x,
                              param = NULL,
@@ -105,7 +114,7 @@ text_coef.lavaan <- function(x,
       } else {
         ct <- lavaan::parameterEstimates(x, ...)
       }
-    if (lavInspect(x, "ngroups") == 1) {
+    if (lavaan::lavInspect(x, "ngroups") == 1) {
         ct$group <- 1
       }
     coef1 <- ct[(ct$lhs == param_str$lhs) &

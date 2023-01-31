@@ -2,9 +2,26 @@
 % Please edit documentation in R/text_rsq.R
 \name{text_rsq}
 \alias{text_rsq}
+\alias{text_rsq.default}
+\alias{text_rsq.lm}
 \title{A R-square as Text}
 \usage{
 text_rsq(x, ...)
+
+\method{text_rsq}{default}(
+  x,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  ...
+)
+
+\method{text_rsq}{lm}(
+  x,
+  digits = getOption("out2text_coef_digits", 3),
+  format = getOption("out2text_coef_format", "f"),
+  type = c("unadjusted", "adjusted"),
+  ...
+)
 }
 \arguments{
 \item{x}{A supported object with an R-square in the results.}

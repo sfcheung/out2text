@@ -17,5 +17,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests:
     testthat (>= 3.0.0)
+Imports:
+    lavaan
 Config/testthat/edition: 3
 URL: https://sfcheung.github.io/out2text/

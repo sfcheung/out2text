@@ -34,13 +34,14 @@
 #' x <- rnorm(n)
 #' y <- .6 * x + rnorm(n, 0, .8)
 #' out <- lm(y ~ x)
-#' text_coef_p_p(out, "x")
+#' text_coef_p(out, "x")
 #'
 #' @export
 
 text_coef_p <- function(x, ...) UseMethod("text_coef_p")
 
 #' @export
+#' @rdname text_coef_p
 
 text_coef_p.default <- function(x,
                                 param = NULL,
@@ -52,6 +53,7 @@ text_coef_p.default <- function(x,
 
 
 #' @export
+#' @rdname text_coef_p
 
 text_coef_p.lm <- function(x,
                            param = NULL,
@@ -70,6 +72,7 @@ text_coef_p.lm <- function(x,
   }
 
 #' @export
+#' @rdname text_coef_p
 
 text_coef_p.glm <- function(x,
                             param = NULL,
@@ -79,7 +82,12 @@ text_coef_p.glm <- function(x,
     NextMethod()
   }
 
+#' @param standardized Logical. Whether the estimate in the standardized
+#' solution is to be returned. Default is `FALSE`.
+#' @param group For an `lavaan`-class object, the group from which the
+#' estimate is to be returned. Default is 1.
 #' @export
+#' @rdname text_coef_p
 
 text_coef_p.lavaan <- function(x,
                                param = NULL,
@@ -103,7 +111,7 @@ text_coef_p.lavaan <- function(x,
       } else {
         ct <- lavaan::parameterEstimates(x, ...)
       }
-    if (lavInspect(x, "ngroups") == 1) {
+    if (lavaan::lavInspect(x, "ngroups") == 1) {
         ct$group <- 1
       }
     coef1 <- ct[(ct$lhs == param_str$lhs) &
