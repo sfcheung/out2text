@@ -1,0 +1,67 @@
+---
+title: "lavaan"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{lavaan}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(out2text)
+```
+
+# `lavaan()` Results
+
+```{r}
+library(lavaan)
+mod <-
+"
+visual  =~ x1 + x2 + x3
+textual =~ x4 + x5 + x6
+speed   =~ x7 + x8 + x9
+textual ~ c(a1, a2) * visual
+speed ~ c(b1, b2) * textual
+"
+set.seed(870452)
+id <- sample(nrow(HolzingerSwineford1939), 100)
+fit <- sem(mod, data = HolzingerSwineford1939[id, ], group = "school")
+est <- parameterEstimates(fit)
+std <- standardizedSolution(fit)
+est
+std
+```
+
+# Coefficients
+
+```{r}
+text_coef(fit, "visual=~x2")
+text_coef(fit, "visual=~x2", 4)
+text_coef(fit, "visual=~x2", standardized = TRUE)
+text_coef(fit, "visual=~x2", digits = 5, standardized = TRUE)
+```
+
+# The *p*-Values of Coefficients
+
+```{r}
+text_coef_p(fit, "visual=~x2")
+text_coef_p(fit, "visual=~x2", standardized = TRUE)
+text_coef_p(fit, "visual=~x2", 4)
+text_coef_p(fit, "textual=~x5", 4)
+text_coef_p(fit, "visual=~x2", digits = 5, standardized = TRUE)
+```
+
+# Confidence Intervals
+
+```{r}
+text_confint(fit, "visual=~x2")
+text_confint(fit, "visual=~x2", digits = 5)
+text_confint(fit, "visual=~x2", digits = 5, brackets = c("(", ")"))
+```

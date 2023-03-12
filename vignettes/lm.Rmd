@@ -1,0 +1,91 @@
+---
+title: "Get Values From `lm()` Output"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{lm}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(out2text)
+```
+
+# `lm()` Results
+
+```{r}
+set.seed(894252)
+n <- 10
+x <- rnorm(n)
+w <- rnorm(n)
+y <- .6 * x + .8 * w + rnorm(n, 0, .8)
+
+lm_out <- lm(y ~ x + w)
+summary(lm_out)
+```
+
+# Coefficients
+
+```{r}
+text_coef(lm_out, "x")
+text_coef(lm_out, "x", 4)
+text_coef(lm_out, "(Intercept)", 4)
+```
+
+# The *p*-Values of Coefficient
+
+```{r}
+text_coef_p(lm_out, "x")
+text_coef_p(lm_out, "w")
+text_coef_p(lm_out, "(Intercept)")
+```
+
+# Confidence Intervals
+
+```{r}
+text_confint(lm_out, "x")
+text_confint(lm_out, "w")
+text_confint(lm_out, "w", digits = 4)
+text_confint(lm_out, "w", sep = " - ")
+text_confint(lm_out, "w", brackets = c("(", ")"))
+```
+
+# The R-square
+
+```{r}
+text_rsq(lm_out)
+text_rsq(lm_out, 2)
+text_rsq(lm_out, 3, type = "adjusted")
+```
+
+# Relevant Options
+
+- `out2text_coef_digits`
+- `out2text_coef_format`
+- `out2text_confint_sep`
+- `out2text_confint_brackets`
+- `out2text_coef_p_digits`
+- `out2text_coef_p_format`
+
+```{r}
+opt_old <- options(out2text_coef_digits = 5)
+text_coef(lm_out, "x")
+text_confint(lm_out, "w")
+text_rsq(lm_out)
+options(opt_old)
+```
+
+```{r}
+opt_old <- options(out2text_coef_p_digits = 5)
+text_coef_p(lm_out, "x")
+text_coef_p(lm_out, "w")
+options(opt_old)
+```
+
