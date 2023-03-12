@@ -6,7 +6,7 @@
 [![R-CMD-check](https://github.com/sfcheung/out2text/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sfcheung/out2text/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-(Version 0.0.9000, updated on 2023-02-01, [release history](https://sfcheung.github.io/out2text/news/index.html))
+(Version 0.0.0.9002, updated on 2023-03-12, [release history](https://sfcheung.github.io/out2text/news/index.html))
 
 # out2text <img src="man/figures/logo.png" align="right" height="150" />
 
