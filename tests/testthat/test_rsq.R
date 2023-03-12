@@ -24,3 +24,13 @@ test_that("NULL", {
     expect_identical(text_rsq(n), NULL)
   })
 
+
+test_that("F statistics", {
+    expect_identical(text_rsq_f(lm_out),
+                     "F(1, 8) = 13.254")
+  })
+
+test_that("F statistics", {
+    expect_identical(text_rsq_p(lm_out),
+                     "p = 0.007")
+  })
