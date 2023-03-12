@@ -6,11 +6,11 @@
 [![R-CMD-check](https://github.com/sfcheung/out2text/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sfcheung/out2text/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-(Work-in-progress. Not ready for use)
-
 (Version 0.0.9000, updated on 2023-02-01, [release history](https://sfcheung.github.io/out2text/news/index.html))
 
-# out2text
+# out2text <img src="man/figures/logo.png" align="right" height="150" />
+
+(Work-in-progress. Not ready for use)
 
 This package contain functions to extract values such as
 regression coefficients, *p*-values, confidence intervals,

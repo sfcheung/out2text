@@ -1,6 +1,6 @@
 Package: out2text
 Title: Extract Outputs From Common Analyses and Convert Them To Text
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R:
     c(person(given = "Shu Fai",
            family = "Cheung",
